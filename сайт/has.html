@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Портфолио | Хасмагомед</title>
+
+    <!-- Подключаем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ---------- Базовые сбросы и переменные ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --bg-footer: #020617;
+            --text-light: #cbd5e1;
+            --accent: #38bdf8;
+            --accent-dark: #0284c7;
+            --vk-blue: #4A76A8;
+            --vk-blue-hover: #3a5f8a;
+            --shadow-glow: 0 0 30px rgba(56, 189, 248, 0.25);
+            --radius: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* ---------- Навигация ---------- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            transition: var(--transition);
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- Секции ---------- */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 6rem 1.5rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        /* ---------- Hero (Главная) ---------- */
+        .hero {
+            text-align: center;
+        }
+
+        .hero-avatar {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            box-shadow: var(--shadow-glow), 0 0 60px rgba(56, 189, 248, 0.15);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .hero-avatar:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 50px rgba(56, 189, 248, 0.4);
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 0.3rem;
+            -webkit-text-fill-color: #fff;
+            background: none;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            background: rgba(56, 189, 248, 0.08);
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+        }
+
+        .btn-primary {
+            padding: 0.9rem 2.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            background: var(--accent);
+            color: #0f172a;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: var(--accent-dark);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4);
+            color: #fff;
+        }
+
+        /* ---------- Обо мне ---------- */
+        .about-text {
+            max-width: 720px;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--text-light);
+        }
+
+        .about-highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ---------- Навыки (карточки) ---------- */
+        .cards {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .card {
+            width: 260px;
+            background: var(--bg-card);
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(56, 189, 248, 0.05);
+            backdrop-filter: blur(4px);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--accent);
+        }
+
+        .card i {
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ---------- Контакты ---------- */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.15rem;
+            color: var(--text-light);
+            transition: var(--transition);
+            width: 100%;
+            padding: 0.7rem 1.2rem;
+            border-radius: 14px;
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.05);
+        }
+
+        .contact-item:hover {
+            color: #fff;
+            transform: translateX(8px);
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            width: 28px;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        /* ---------- Форма отправки в ВК ---------- */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 460px;
+            margin-top: 0.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.9rem 1.2rem;
+            border-radius: 14px;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            background: rgba(30, 41, 59, 0.6);
+            color: #fff;
+            font-size: 1rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            padding: 0.9rem;
+            border: none;
+            border-radius: 14px;
+            background: var(--vk-blue);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-form button:hover {
+            background: var(--vk-blue-hover);
+            transform: scale(1.01);
+            box-shadow: 0 0 30px rgba(74, 118, 168, 0.3);
+        }
+
+        /* ---------- Кнопка "Написать в ВК" (открывает чат сразу) ---------- */
+        .btn-vk-chat {
+            padding: 0.9rem 2.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            background: var(--vk-blue);
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(74, 118, 168, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1rem;
+            text-decoration: none;
+        }
+
+        .btn-vk-chat:hover {
+            background: var(--vk-blue-hover);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(74, 118, 168, 0.4);
+        }
+
+        .btn-vk-chat i {
+            font-size: 1.3rem;
+        }
+
+        /* ---------- Футер ---------- */
+        footer {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: var(--bg-footer);
+            color: #94a3b8;
+            border-top: 1px solid rgba(56, 189, 248, 0.05);
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-social a {
+            color: #94a3b8;
+            font-size: 1.8rem;
+            transition: var(--transition);
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.05);
+        }
+
+        .footer-social a:hover {
+            color: var(--accent);
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent);
+        }
+
+        /* ---------- Адаптивность ---------- */
+        @media (max-width: 700px) {
+            nav {
+                gap: 0.8rem;
+                padding: 0.8rem 1rem;
+            }
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            .hero-avatar {
+                width: 140px;
+                height: 140px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .card {
+                width: 100%;
+                max-width: 300px;
+            }
+            .about-text {
+                font-size: 1rem;
+            }
+            .contact-form {
+                max-width: 100%;
+            }
+            section {
+                padding: 5rem 1rem 3rem;
+            }
+            .contact-item {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+            .footer-social a {
+                width: 44px;
+                height: 44px;
+                line-height: 44px;
+                font-size: 1.5rem;
+            }
+            .btn-vk-chat {
+                padding: 0.7rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .btn-primary {
+                padding: 0.7rem 2rem;
+                font-size: 1rem;
+            }
+            .contact-item {
+                font-size: 0.9rem;
+            }
+            .btn-vk-chat {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ---------- Анимация появления ---------- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== НАВИГАЦИЯ ========== -->
+    <nav>
+        <a href="#home"><i class="fas fa-home"></i> Главная</a>
+        <a href="#about"><i class="fas fa-user"></i> Обо мне</a>
+        <a href="#skills"><i class="fas fa-code"></i> Навыки</a>
+        <a href="#contacts"><i class="fas fa-envelope"></i> Контакты</a>
+    </nav>
+
+    <!-- ========== ГЛАВНАЯ ========== -->
+    <section id="home" class="hero">
+        <img src="photo.jpg" alt="Фото Хасмагомеда" class="hero-avatar" />
+        <h1>Хасмагомед</h1>
+        <p class="subtitle">Начинающий Front-End разработчик</p>
+        <span class="tagline"><i class="fas fa-rocket"></i> Создаю современные сайты</span>
+        <br />
+        
+        <!-- КНОПКА "НАПИСАТЬ В ВК" - ОТКРЫВАЕТ ЧАТ СРАЗУ -->
+        <a href="https://vk.com/im?sel=642773605" target="_blank" class="btn-vk-chat">
+            <i class="fab fa-vk"></i> Написать в ВКонтакте
+        </a>
+        
+        <br /><br />
+        <button class="btn-primary" onclick="hello()">
+            <i class="fas fa-paper-plane"></i> Связаться
+        </button>
+    </section>
+
+    <!-- ========== ОБО МНЕ ========== -->
+    <section id="about" class="fade-in">
+        <h1>Обо мне</h1>
+        <p class="about-text">
+            Я <span class="about-highlight">Хасмагомед</span>, увлечённый веб-разработкой.
+            Каждый день я осваиваю новые технологии и улучшаю свои навыки.
+            Моя цель — стать <span class="about-highlight">профессиональным Front-End разработчиком</span>
+            и создавать удобные, быстрые и визуально привлекательные интерфейсы.
+            <br /><br />
+            <i class="fas fa-quote-left" style="color:var(--accent); opacity:0.5;"></i>
+            Код — это инструмент, а дизайн — искусство.
+            <i class="fas fa-quote-right" style="color:var(--accent); opacity:0.5;"></i>
+        </p>
+    </section>
+
+    <!-- ========== НАВЫКИ ========== -->
+    <section id="skills" class="fade-in">
+        <h1>Мои навыки</h1>
+        <div class="cards">
+            <div class="card">
+                <i class="fab fa-html5"></i>
+                <h3>HTML</h3>
+                <p>Семантическая разметка, доступность, структура сайта.</p>
+            </div>
+            <div class="card">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS</h3>
+                <p>Адаптивный дизайн, Flexbox, Grid, анимации.</p>
+            </div>
+            <div class="card">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+                <p>Интерактивность, обработка событий, DOM-манипуляции.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== КОНТАКТЫ ========== -->
+    <section id="contacts" class="fade-in">
+        <h1>Контакты</h1>
+        
+        <!-- БЛОК С КОНТАКТАМИ -->
+        <div class="contact-info">
+            <!-- Телефон -->
+            <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <a href="tel:+79888049299">+7 (988) 804-92-99</a>
+            </div>
+
+            <!-- VK - открывает чат сразу -->
+            <div class="contact-item">
+                <i class="fab fa-vk" style="color: #4A76A8;"></i>
+                <a href="https://vk.com/im?sel=642773605" target="_blank">Написать в ВКонтакте</a>
+            </div>
+
+            <!-- Telegram -->
+            <div class="contact-item">
+                <i class="fab fa-telegram"></i>
+                <a href="https://t.me/hassius1" target="_blank">@hassius1</a>
+            </div>
+
+            <!-- Instagram -->
+            <div class="contact-item">
+                <i class="fab fa-instagram"></i>
+                <a href="https://www.instagram.com/_hass_t" target="_blank">@_hass_t</a>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:terkakievhasik@gmail.com">terkakievhasik@gmail.com</a>
+            </div>
+        </div>
+
+        <!-- ===== ФОРМА С СООБЩЕНИЕМ ===== -->
+        <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-light);">
+            <i class="fab fa-vk" style="color: #4A76A8;"></i> Написать мне
+        </h2>
+        
+        <form class="contact-form" id="vkForm">
+            <input type="text" id="userName" placeholder="Ваше имя" required />
+            <input type="text" id="userPhone" placeholder="Ваш телефон (необязательно)" />
+            <textarea id="userMessage" placeholder="Ваше сообщение..." required></textarea>
+            <button type="submit">
+                <i class="fab fa-vk"></i> Отправить в ВКонтакте
+            </button>
+        </form>
+    </section>
+
+    <!-- ========== ФУТЕР ========== -->
+    <footer>
+        <div class="footer-social">
+            <a href="https://vk.com/im?sel=642773605" target="_blank" aria-label="VK">
+                <i class="fab fa-vk"></i>
+            </a>
+            <a href="https://t.me/hassius1" target="_blank" aria-label="Telegram">
+                <i class="fab fa-telegram"></i>
+            </a>
+            <a href="https://www.instagram.com/_hass_t" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" target="_blank" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>© 2026 Хасмагомед &nbsp;|&nbsp; Мой первый профессиональный сайт</p>
+    </footer>
+
+    <!-- ========== СКРИПТЫ ========== -->
+    <script>
+        // Приветствие
+        function hello() {
+            alert('Спасибо за посещение моего сайта! 😊\nЯ свяжусь с вами в ближайшее время.');
+        }
+
+        // ===== ОТПРАВКА В ВКОНТАКТЕ =====
+        document.getElementById('vkForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Получаем данные из формы
+            const name = document.getElementById('userName').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+            const message = document.getElementById('userMessage').value.trim();
+            
+            // Формируем текст сообщения
+            let vkMessage = `📩 Новое сообщение с сайта-портфолио\n\n`;
+            vkMessage += `👤 Имя: ${name}\n`;
+            
+            if (phone) {
+                vkMessage += `📱 Телефон: ${phone}\n`;
+            }
+            
+            vkMessage += `\n💬 Сообщение:\n${message}`;
+            
+            // Кодируем текст для URL
+            const encodedMessage = encodeURIComponent(vkMessage);
+            
+            // Ваш ID ВКонтакте
+            const vkId = '642773605';
+            
+            // Ссылка на ВК - ОТКРЫВАЕТ ЧАТ СРАЗУ с готовым сообщением
+            const vkUrl = `https://vk.com/im?sel=${vkId}&text=${encodedMessage}`;
+            
+            // Открываем ВК в новой вкладке
+            window.open(vkUrl, '_blank');
+            
+            // Показываем уведомление
+            alert('✅ Сообщение готово! Откроется ВКонтакте для отправки.');
+            
+            // Очищаем форму
+            this.reset();
+        });
+
+        // Анимация появления
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeEls = document.querySelectorAll('.fade-in');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -30px 0px'
+            });
+
+            fadeEls.forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>
